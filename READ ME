@@ -1,0 +1,12 @@
+	Writing requests check Trello's Website.
+Creating API tests for operation like:
+1.	Get all boards
+2.	Create a new board
+3.	Get a single board
+4.	Create a TO DO List on your Board
+5.	Create a DONE List on your Board
+6.	Get All Lists from a Board
+7.	Create a Card in the TO DO List
+8.	Move Card to DONE list
+9.	Delete the card
+10.	Delete the board
