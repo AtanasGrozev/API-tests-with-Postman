@@ -51,7 +51,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}/1/members/me/boards?key=bc12f39d611ef973ecd21023167920be&token=ATTA5d176ff19446e5d954489ecb432a81e71396efa4f9917985f5630595aea244d929FCC2CF",
+					"raw": "{{baseURL}}/1/members/me/boards?key=bc12f39d611ef973ecd21023167920be&token=ATTA5d176ff19446e5d954489ecb432a81e71396efa4f9917985f5630595aea244d929FCC2CF&boardID=65f70ba0b01fa0c8ca078806",
 					"host": [
 						"{{baseURL}}"
 					],
@@ -69,6 +69,11 @@
 						{
 							"key": "token",
 							"value": "ATTA5d176ff19446e5d954489ecb432a81e71396efa4f9917985f5630595aea244d929FCC2CF"
+						},
+						{
+							"key": "boardID",
+							"value": "65f70ba0b01fa0c8ca078806",
+							"type": "text"
 						}
 					]
 				}
@@ -85,8 +90,10 @@
 						"exec": [
 							"pm.test('Code is 200', function () {\r",
 							"    pm.response.to.have.status(200);\r",
+							"    \r",
 							"})\r",
 							"const responseData = pm.response.json();\r",
+							"pm.collectionVariables.set('boardID', responseData.id)\r",
 							"\r",
 							"pm.test(\"Response data id check\", function () {\r",
 							"    pm.expect(responseData.name).to.equal(\"Final Postman Board\");\r",
@@ -150,16 +157,17 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "78e8595f-6fd0-47aa-ae78-fa326e5524dc",
+						"id": "bc955592-20be-436b-b30d-3de4d38ad563",
 						"exec": [
 							"pm.test('Code is 200', function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"})\r",
 							"const responseData = pm.response.json();\r",
+							"pm.collectionVariables.set('', responseData.id)\r",
 							"\r",
 							"pm.test('Return single board by ID' , function () {\r",
 							"\r",
-							"pm.expect(responseData.name).to.equal(\"New Postman Board\");\r",
+							"pm.expect(responseData.name).to.equal(\"Final Postman Board\");\r",
 							"\r",
 							"})"
 						],
@@ -185,7 +193,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://api.trello.com/1/boards/65f4bcde412792974ec18394?key=bc12f39d611ef973ecd21023167920be&token=ATTA5d176ff19446e5d954489ecb432a81e71396efa4f9917985f5630595aea244d929FCC2CF",
+					"raw": "https://api.trello.com/1/boards/{{boardID}}?key={{trelloKey }}&token={{trelloToken}}&boardID={{boardID}}",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -195,16 +203,20 @@
 					"path": [
 						"1",
 						"boards",
-						"65f4bcde412792974ec18394"
+						"{{boardID}}"
 					],
 					"query": [
 						{
 							"key": "key",
-							"value": "bc12f39d611ef973ecd21023167920be"
+							"value": "{{trelloKey }}"
 						},
 						{
 							"key": "token",
-							"value": "ATTA5d176ff19446e5d954489ecb432a81e71396efa4f9917985f5630595aea244d929FCC2CF"
+							"value": "{{trelloToken}}"
+						},
+						{
+							"key": "boardID",
+							"value": "{{boardID}}"
 						}
 					]
 				}
@@ -223,6 +235,7 @@
 							"    pm.response.to.have.status(200);\r",
 							"})\r",
 							"const responseData = pm.response.json();\r",
+							"pm.collectionVariables.set('ToDoListID', responseData.id)\r",
 							"\r",
 							"pm.test(\"Create To Do list\", function () {\r",
 							"\r",
@@ -244,7 +257,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "https://api.trello.com/1/boards/65f4bcde412792974ec18394/lists?name=To Do lIst&key={{trelloKey }}&token={{trelloToken}}",
+					"raw": "https://api.trello.com/1/boards/{{boardID}}/lists?name=To Do lIst&key={{trelloKey }}&token={{trelloToken}}",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -254,7 +267,7 @@
 					"path": [
 						"1",
 						"boards",
-						"65f4bcde412792974ec18394",
+						"{{boardID}}",
 						"lists"
 					],
 					"query": [
@@ -287,6 +300,7 @@
 							"    pm.response.to.have.status(200);\r",
 							"})\r",
 							"const responseData = pm.response.json();\r",
+							"pm.collectionVariables.set('idDoneList', responseData.id)\r",
 							"\r",
 							"pm.test(\"Create Done list\", function () {\r",
 							"\r",
@@ -318,7 +332,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "https://api.trello.com/1/boards/65f4bcde412792974ec18394/lists?name=Done&key=bc12f39d611ef973ecd21023167920be&token=ATTA5d176ff19446e5d954489ecb432a81e71396efa4f9917985f5630595aea244d929FCC2CF",
+					"raw": "https://api.trello.com/1/boards/{{boardID}}/lists?name=Done&key={{trelloKey }}&token={{trelloToken}}",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -328,7 +342,7 @@
 					"path": [
 						"1",
 						"boards",
-						"65f4bcde412792974ec18394",
+						"{{boardID}}",
 						"lists"
 					],
 					"query": [
@@ -338,11 +352,11 @@
 						},
 						{
 							"key": "key",
-							"value": "bc12f39d611ef973ecd21023167920be"
+							"value": "{{trelloKey }}"
 						},
 						{
 							"key": "token",
-							"value": "ATTA5d176ff19446e5d954489ecb432a81e71396efa4f9917985f5630595aea244d929FCC2CF"
+							"value": "{{trelloToken}}"
 						}
 					]
 				}
@@ -355,7 +369,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2e856371-bea1-40e3-8cf0-a17707447bf6",
+						"id": "1cb8b12d-8828-45d0-8a23-36ed86f659dd",
 						"exec": [
 							"pm.test('Code is 200', function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -367,16 +381,10 @@
 							"    pm.expect(responseData).to.not.be.empty;\r",
 							"})\r",
 							"\r",
-							"pm.test('Response is an array', function () {\r",
-							"    pm.expect(responseData).to.be.an('array');\r",
-							"    pm.expect(responseData.length).to.eql(5);\r",
-							"})\r",
 							"\r",
 							"pm.test('Content type is application/json', function () {\r",
 							"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
-							"})\r",
-							"\r",
-							""
+							"})"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -391,7 +399,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://api.trello.com/1/boards/65f4ab7200fe16cdb70421a9/lists?key={{trelloKey }}&token={{trelloToken}}",
+					"raw": "https://api.trello.com/1/boards/{{boardID}}/lists?key={{trelloKey }}&token={{trelloToken}}",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -401,7 +409,7 @@
 					"path": [
 						"1",
 						"boards",
-						"65f4ab7200fe16cdb70421a9",
+						"{{boardID}}",
 						"lists"
 					],
 					"query": [
@@ -431,6 +439,7 @@
 							"})\r",
 							"\r",
 							"const responseData = pm.response.json();\r",
+							"pm.collectionVariables.set('CARDinToDoList', responseData.id)\r",
 							"\r",
 							"pm.test('Check name of card in list', function () {\r",
 							"pm.expect(responseData.name).to.equal(\"Sign Up for Trello\")\r",
@@ -451,7 +460,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "https://api.trello.com/1/cards?idList=65f4bd25633c8abbea98c732&name=Sign Up for Trello&key=bc12f39d611ef973ecd21023167920be&token=ATTA5d176ff19446e5d954489ecb432a81e71396efa4f9917985f5630595aea244d929FCC2CF",
+					"raw": "https://api.trello.com/1/cards?idList={{ToDoListID}}&name=Sign Up for Trello&key={{trelloKey }}&token={{trelloToken}}",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -465,7 +474,7 @@
 					"query": [
 						{
 							"key": "idList",
-							"value": "65f4bd25633c8abbea98c732"
+							"value": "{{ToDoListID}}"
 						},
 						{
 							"key": "name",
@@ -473,11 +482,11 @@
 						},
 						{
 							"key": "key",
-							"value": "bc12f39d611ef973ecd21023167920be"
+							"value": "{{trelloKey }}"
 						},
 						{
 							"key": "token",
-							"value": "ATTA5d176ff19446e5d954489ecb432a81e71396efa4f9917985f5630595aea244d929FCC2CF"
+							"value": "{{trelloToken}}"
 						}
 					]
 				}
@@ -497,16 +506,13 @@
 							"})\r",
 							"\r",
 							"const responseData = pm.response.json();\r",
+							"pm.collectionVariables.set('CARDinToDoList', responseData.id)\r",
 							"\r",
 							"pm.test('Card Id is correct', function () {\r",
 							"    pm.expect(pm.response.json().id).to.be.a('string').and.to.not.be.empty\r",
 							"});\r",
 							"\r",
-							"pm.test('Card is moved ot Done list' , function() { \r",
 							"\r",
-							"pm.expect(responseData.id).to.eql((\"65f4be605882c6b6692ab2ec\"))\r",
-							"\r",
-							"})\r",
 							"\r",
 							"pm.test('Check name of card in Done list', function () {\r",
 							"pm.expect(responseData.name).to.equal(\"Sign Up for Trello\")\r",
@@ -525,7 +531,7 @@
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "https://api.trello.com/1/cards/65f4be605882c6b6692ab2ec?idList=65f4bd2c9d7d7f70d7a5d2e5&key=bc12f39d611ef973ecd21023167920be&token=ATTA5d176ff19446e5d954489ecb432a81e71396efa4f9917985f5630595aea244d929FCC2CF",
+					"raw": "https://api.trello.com/1/cards/{{CARDinToDoList}}?idList={{idDoneList}}&key={{trelloKey }}&token={{trelloToken}}",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -535,20 +541,20 @@
 					"path": [
 						"1",
 						"cards",
-						"65f4be605882c6b6692ab2ec"
+						"{{CARDinToDoList}}"
 					],
 					"query": [
 						{
 							"key": "idList",
-							"value": "65f4bd2c9d7d7f70d7a5d2e5"
+							"value": "{{idDoneList}}"
 						},
 						{
 							"key": "key",
-							"value": "bc12f39d611ef973ecd21023167920be"
+							"value": "{{trelloKey }}"
 						},
 						{
 							"key": "token",
-							"value": "ATTA5d176ff19446e5d954489ecb432a81e71396efa4f9917985f5630595aea244d929FCC2CF"
+							"value": "{{trelloToken}}"
 						}
 					]
 				}
@@ -561,9 +567,18 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c385ed2b-ac7f-4ba2-85e4-f88329c7c3f4",
+						"id": "e8858062-a189-4e00-b934-448d8fe0c418",
 						"exec": [
-							""
+							"pm.test('Code is 200', function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const responseData = pm.response.json();\r",
+							"pm.test('There is empty output limits', function() {\r",
+							"    pm.expect(responseData).to.have.property('limits')\r",
+							"    pm.expect(responseData.limits).to.be.an('object')\r",
+							"\r",
+							"});"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -578,7 +593,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://api.trello.com/1/cards/65f4a3b0a295cde3a557688e?key=bc12f39d611ef973ecd21023167920be&token=ATTA5d176ff19446e5d954489ecb432a81e71396efa4f9917985f5630595aea244d929FCC2CF",
+					"raw": "https://api.trello.com/1/cards/{{CARDinToDoList}}?key={{trelloKey }}&token={{trelloToken}}",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -588,16 +603,16 @@
 					"path": [
 						"1",
 						"cards",
-						"65f4a3b0a295cde3a557688e"
+						"{{CARDinToDoList}}"
 					],
 					"query": [
 						{
 							"key": "key",
-							"value": "bc12f39d611ef973ecd21023167920be"
+							"value": "{{trelloKey }}"
 						},
 						{
 							"key": "token",
-							"value": "ATTA5d176ff19446e5d954489ecb432a81e71396efa4f9917985f5630595aea244d929FCC2CF"
+							"value": "{{trelloToken}}"
 						}
 					]
 				}
@@ -610,8 +625,17 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a145b9f3-9b41-458d-aed8-1f5862707f7e",
+						"id": "a9608df0-5c38-4f87-b697-533e7865d253",
 						"exec": [
+							"pm.test('Code is 200', function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const responseData = pm.response.json();\r",
+							"pm.test('Response _value is null', function() {\r",
+							"    pm.expect(responseData).to.have.property('_value'); \r",
+							"    pm.expect(responseData._value).to.be.null; \r",
+							"});\r",
 							""
 						],
 						"type": "text/javascript",
@@ -627,7 +651,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://api.trello.com/1/boards/65f49327946ddafcd4e4f78f?key=bc12f39d611ef973ecd21023167920be&token=ATTA5d176ff19446e5d954489ecb432a81e71396efa4f9917985f5630595aea244d929FCC2CF",
+					"raw": "https://api.trello.com/1/boards/{{boardID}}?key={{trelloKey }}&token={{trelloToken}}",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -637,16 +661,16 @@
 					"path": [
 						"1",
 						"boards",
-						"65f49327946ddafcd4e4f78f"
+						"{{boardID}}"
 					],
 					"query": [
 						{
 							"key": "key",
-							"value": "bc12f39d611ef973ecd21023167920be"
+							"value": "{{trelloKey }}"
 						},
 						{
 							"key": "token",
-							"value": "ATTA5d176ff19446e5d954489ecb432a81e71396efa4f9917985f5630595aea244d929FCC2CF"
+							"value": "{{trelloToken}}"
 						}
 					]
 				}
@@ -658,7 +682,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "cb8c1243-e7e9-48ad-8b58-dbf92f58710f",
+				"id": "e50e6d4e-3a3c-41c2-81a4-edfe0bca0c3b",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -668,7 +692,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "cca4488a-8f1c-44fc-973d-7c713533944f",
+				"id": "d352d540-a0ca-4a25-99e5-8ba80d2b67dd",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -693,8 +717,30 @@
 			"type": "string"
 		},
 		{
-			"key": "ID on Board",
-			"value": "65f49327946ddafcd4e4f78f"
+			"key": "boardID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "ToDoListID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "idDoneList",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "CARDinToDoList",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"value": ""
+		},
+		{
+			"value": ""
 		}
 	]
 }
