@@ -1,0 +1,93 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Atanas Work\\Desktop\\Software University\\QA Back-End Test Automation\\exam preparation I\\IdeaCenterExamPrep_Solutions\\IdeaAPITest-Atanas\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8504F780-76DA-4ED7-84E8-448A155CB055}|IdeaAPITest\\IdeaAPITest.csproj|c:\\users\\atanas work\\desktop\\software university\\qa back-end test automation\\exam preparation i\\ideacenterexamprep_solutions\\ideaapitest-atanas\\ideaapitest\\apitesting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8504F780-76DA-4ED7-84E8-448A155CB055}|IdeaAPITest\\IdeaAPITest.csproj|solutionrelative:ideaapitest\\apitesting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8504F780-76DA-4ED7-84E8-448A155CB055}|IdeaAPITest\\IdeaAPITest.csproj|c:\\users\\atanas work\\desktop\\software university\\qa back-end test automation\\exam preparation i\\ideacenterexamprep_solutions\\ideaapitest-atanas\\ideaapitest\\models\\apiresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8504F780-76DA-4ED7-84E8-448A155CB055}|IdeaAPITest\\IdeaAPITest.csproj|solutionrelative:ideaapitest\\models\\apiresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8504F780-76DA-4ED7-84E8-448A155CB055}|IdeaAPITest\\IdeaAPITest.csproj|c:\\users\\atanas work\\desktop\\software university\\qa back-end test automation\\exam preparation i\\ideacenterexamprep_solutions\\ideaapitest-atanas\\ideaapitest\\models\\ideadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8504F780-76DA-4ED7-84E8-448A155CB055}|IdeaAPITest\\IdeaAPITest.csproj|solutionrelative:ideaapitest\\models\\ideadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8504F780-76DA-4ED7-84E8-448A155CB055}|IdeaAPITest\\IdeaAPITest.csproj|c:\\users\\atanas work\\desktop\\software university\\qa back-end test automation\\exam preparation i\\ideacenterexamprep_solutions\\ideaapitest-atanas\\ideaapitest\\ideaapitest.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{8504F780-76DA-4ED7-84E8-448A155CB055}|IdeaAPITest\\IdeaAPITest.csproj|solutionrelative:ideaapitest\\ideaapitest.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IdeaDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Atanas Work\\Desktop\\Software University\\QA Back-End Test Automation\\exam preparation I\\IdeaCenterExamPrep_Solutions\\IdeaAPITest-Atanas\\IdeaAPITest\\Models\\IdeaDTO.cs",
+              "RelativeDocumentMoniker": "IdeaAPITest\\Models\\IdeaDTO.cs",
+              "ToolTip": "C:\\Users\\Atanas Work\\Desktop\\Software University\\QA Back-End Test Automation\\exam preparation I\\IdeaCenterExamPrep_Solutions\\IdeaAPITest-Atanas\\IdeaAPITest\\Models\\IdeaDTO.cs",
+              "RelativeToolTip": "IdeaAPITest\\Models\\IdeaDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-16T06:56:54.903Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ApiResponseDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Atanas Work\\Desktop\\Software University\\QA Back-End Test Automation\\exam preparation I\\IdeaCenterExamPrep_Solutions\\IdeaAPITest-Atanas\\IdeaAPITest\\Models\\ApiResponseDTO.cs",
+              "RelativeDocumentMoniker": "IdeaAPITest\\Models\\ApiResponseDTO.cs",
+              "ToolTip": "C:\\Users\\Atanas Work\\Desktop\\Software University\\QA Back-End Test Automation\\exam preparation I\\IdeaCenterExamPrep_Solutions\\IdeaAPITest-Atanas\\IdeaAPITest\\Models\\ApiResponseDTO.cs",
+              "RelativeToolTip": "IdeaAPITest\\Models\\ApiResponseDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-16T06:48:50.693Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IdeaAPITest.csproj",
+              "DocumentMoniker": "C:\\Users\\Atanas Work\\Desktop\\Software University\\QA Back-End Test Automation\\exam preparation I\\IdeaCenterExamPrep_Solutions\\IdeaAPITest-Atanas\\IdeaAPITest\\IdeaAPITest.csproj",
+              "RelativeDocumentMoniker": "IdeaAPITest\\IdeaAPITest.csproj",
+              "ToolTip": "C:\\Users\\Atanas Work\\Desktop\\Software University\\QA Back-End Test Automation\\exam preparation I\\IdeaCenterExamPrep_Solutions\\IdeaAPITest-Atanas\\IdeaAPITest\\IdeaAPITest.csproj",
+              "RelativeToolTip": "IdeaAPITest\\IdeaAPITest.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-04-16T06:47:31.625Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "APITesting.cs",
+              "DocumentMoniker": "C:\\Users\\Atanas Work\\Desktop\\Software University\\QA Back-End Test Automation\\exam preparation I\\IdeaCenterExamPrep_Solutions\\IdeaAPITest-Atanas\\IdeaAPITest\\APITesting.cs",
+              "RelativeDocumentMoniker": "IdeaAPITest\\APITesting.cs",
+              "ToolTip": "C:\\Users\\Atanas Work\\Desktop\\Software University\\QA Back-End Test Automation\\exam preparation I\\IdeaCenterExamPrep_Solutions\\IdeaAPITest-Atanas\\IdeaAPITest\\APITesting.cs*",
+              "RelativeToolTip": "IdeaAPITest\\APITesting.cs*",
+              "ViewState": "AQIAADYAAAAAAAAAAAAYwBIAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-16T05:45:41.997Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
