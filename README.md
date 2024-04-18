@@ -11,7 +11,8 @@ In this repository, I embark on an exciting journey of automating API tests usin
 🌱 Growing Together:
 Let's collaborate and grow together! 🌟 Whether you're a seasoned API tester or just starting, your insights and feedback are invaluable. Join me on this journey as we push the boundaries of API testing excellence!
 
-📚 Remember:
-This repository serves as a testament to my dedication and passion for mastering API testing with Postman. Each test case, variable, and report is a step forward in achieving QA perfection.
+📚 Additionally, this repository also includes API testing with .NET RestSharp. RestSharp is a popular library for building and consuming HTTP APIs in .NET applications, providing another avenue for robust API testing.
 
-🚦 Ready to join me on this API testing adventure? Let's automate, innovate, and elevate the quality assurance landscape, one API call at a time! 💪
+📚 Remember:
+This repository serves as a testament to my dedication and passion for mastering API testing with Postman. Each test case, variable, and report is a step forward in achieving QA skills.
+
