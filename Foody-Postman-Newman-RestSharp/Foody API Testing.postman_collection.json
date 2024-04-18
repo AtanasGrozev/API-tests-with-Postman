@@ -1,0 +1,422 @@
+{
+	"info": {
+		"_postman_id": "b152dbfd-6f48-46ff-9565-17105ef89eb3",
+		"name": "Foody API Testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28965930",
+		"_collection_link": "https://restless-shadow-619547.postman.co/workspace/My-Workspace~339d057c-766b-4c7a-85cd-911262affeb8/collection/28965930-b152dbfd-6f48-46ff-9565-17105ef89eb3?action=share&source=collection_link&creator=28965930"
+	},
+	"item": [
+		{
+			"name": "Login and Authentication",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"const responseData = pm.response.json()\r",
+							"pm.collectionVariables.set(\"accessToken\", responseData.accessToken)\r",
+							"\r",
+							"pm.test(\"username, password, and accessToken should not be empty\", function () {\r",
+							"  const responseData = pm.response.json(); \r",
+							"\r",
+							"  pm.expect(responseData.password).not.to.be.empty\r",
+							"  pm.expect(responseData.accessToken).not.to.be.empty\r",
+							"  pm.expect(responseData.username).not.be.empty\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"atanas\",\r\n    \"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:86/api/User/Authentication",
+					"protocol": "http",
+					"host": [
+						"softuni-qa-loadbalancer-2137572849",
+						"eu-north-1",
+						"elb",
+						"amazonaws",
+						"com"
+					],
+					"port": "86",
+					"path": [
+						"api",
+						"User",
+						"Authentication"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Food",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Code is 201\", function () {",
+							"    pm.expect(pm.response.code).to.equal(201);",
+							"});",
+							"",
+							"const responseData = pm.response.json();",
+							"",
+							"pm.test(\"Response body contains a foodID\", function () {",
+							"    pm.expect(responseData.foodId).to.be.a('string');",
+							"});",
+							"pm.collectionVariables.set(\"foodId\", responseData.foodId)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var randomNumber = Math.floor(Math.random()*1000)\r",
+							"var randomTitle = \"food\" + randomNumber\r",
+							"\r",
+							"pm.collectionVariables.set(\"randomFood\", randomTitle)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKd3RTZXJ2aWNlQWNjZXNzVG9rZW4iLCJqdGkiOiIzZWVhZGRjOC0wYjg0LTQ3NjctYmNmMi1jNzJkZjUwMmQ3N2IiLCJpYXQiOiIwNC8xNy8yMDI0IDA3OjUyOjIyIiwiVXNlcklkIjoiNDUzZmZmZTUtZjM4Zi00OTU4LWJiMTQtMDhkYzVkMWYwNzFlIiwiRW1haWwiOiJhdGFuYXNAdGVzdC5iZyIsIlVzZXJOYW1lIjoiYXRhbmFzIiwiZXhwIjoxNzEzMzYxOTQyLCJpc3MiOiJGb29keV9BcHBfU29mdFVuaSIsImF1ZCI6IkZvb2R5X1dlYkFQSV9Tb2Z0VW5pIn0.HBT_ocsk2JGLcC0s9Br-tc0mfv2GKIkSWFg8H_DvAR4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{randomFood}}\",\r\n    \"description\": \"Vita low carb bread\",\r\n    \"url\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURLFoody}}/api/Food/Create",
+					"host": [
+						"{{baseURLFoody}}"
+					],
+					"path": [
+						"api",
+						"Food",
+						"Create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Food by Name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Code is 200', function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"})\r",
+							"\r",
+							"const responseData = pm.response.json();\r",
+							"\r",
+							"pm.test('Array is not empty', function () {\r",
+							"    pm.expect(responseData).to.be.an('array');\r",
+							"    responseData.forEach(food => {\r",
+							"        pm.expect(food).to.have.property('id');\r",
+							"        pm.expect(food).to.have.property('name');\r",
+							"        pm.expect(food).to.have.property('description');\r",
+							"    });\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Array contains search food\", function () {\r",
+							"    const randomFood = pm.collectionVariables.get(\"randomFood\")\r",
+							"    pm.expect(responseData[0].name).to.eql(randomFood) \r",
+							"   \r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKd3RTZXJ2aWNlQWNjZXNzVG9rZW4iLCJqdGkiOiIzZWVhZGRjOC0wYjg0LTQ3NjctYmNmMi1jNzJkZjUwMmQ3N2IiLCJpYXQiOiIwNC8xNy8yMDI0IDA3OjUyOjIyIiwiVXNlcklkIjoiNDUzZmZmZTUtZjM4Zi00OTU4LWJiMTQtMDhkYzVkMWYwNzFlIiwiRW1haWwiOiJhdGFuYXNAdGVzdC5iZyIsIlVzZXJOYW1lIjoiYXRhbmFzIiwiZXhwIjoxNzEzMzYxOTQyLCJpc3MiOiJGb29keV9BcHBfU29mdFVuaSIsImF1ZCI6IkZvb2R5X1dlYkFQSV9Tb2Z0VW5pIn0.HBT_ocsk2JGLcC0s9Br-tc0mfv2GKIkSWFg8H_DvAR4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURLFoody}}/api/Food/Search/?keyword={{randomFood}}",
+					"host": [
+						"{{baseURLFoody}}"
+					],
+					"path": [
+						"api",
+						"Food",
+						"Search",
+						""
+					],
+					"query": [
+						{
+							"key": "keyword",
+							"value": "{{randomFood}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit the Name of the Food that you Created",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Code is 200', function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"})",
+							"",
+							"const responseData = pm.response.json();",
+							"",
+							"pm.test(\"Response body contains a Successfully edited msg\", function () {",
+							"    pm.expect(responseData.msg).to.equal(\"Successfully edited\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKd3RTZXJ2aWNlQWNjZXNzVG9rZW4iLCJqdGkiOiIzZWVhZGRjOC0wYjg0LTQ3NjctYmNmMi1jNzJkZjUwMmQ3N2IiLCJpYXQiOiIwNC8xNy8yMDI0IDA3OjUyOjIyIiwiVXNlcklkIjoiNDUzZmZmZTUtZjM4Zi00OTU4LWJiMTQtMDhkYzVkMWYwNzFlIiwiRW1haWwiOiJhdGFuYXNAdGVzdC5iZyIsIlVzZXJOYW1lIjoiYXRhbmFzIiwiZXhwIjoxNzEzMzYxOTQyLCJpc3MiOiJGb29keV9BcHBfU29mdFVuaSIsImF1ZCI6IkZvb2R5X1dlYkFQSV9Tb2Z0VW5pIn0.HBT_ocsk2JGLcC0s9Br-tc0mfv2GKIkSWFg8H_DvAR4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"path\": \"/name\",\r\n        \"op\": \"replace\",\r\n        \"value\": \"EditedFood1\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURLFoody}}/api/Food/Edit/:foodid",
+					"host": [
+						"{{baseURLFoody}}"
+					],
+					"path": [
+						"api",
+						"Food",
+						"Edit",
+						":foodid"
+					],
+					"variable": [
+						{
+							"key": "foodid",
+							"value": "{{foodId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete the Edited Food",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Code is 200', function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"})",
+							"",
+							"const responseData = pm.response.json();",
+							"",
+							"pm.test(\"Response body contains a Successfully edited msg\", function () {",
+							"    pm.expect(responseData.msg).to.equal(\"Deleted successfully!\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKd3RTZXJ2aWNlQWNjZXNzVG9rZW4iLCJqdGkiOiIzZWVhZGRjOC0wYjg0LTQ3NjctYmNmMi1jNzJkZjUwMmQ3N2IiLCJpYXQiOiIwNC8xNy8yMDI0IDA3OjUyOjIyIiwiVXNlcklkIjoiNDUzZmZmZTUtZjM4Zi00OTU4LWJiMTQtMDhkYzVkMWYwNzFlIiwiRW1haWwiOiJhdGFuYXNAdGVzdC5iZyIsIlVzZXJOYW1lIjoiYXRhbmFzIiwiZXhwIjoxNzEzMzYxOTQyLCJpc3MiOiJGb29keV9BcHBfU29mdFVuaSIsImF1ZCI6IkZvb2R5X1dlYkFQSV9Tb2Z0VW5pIn0.HBT_ocsk2JGLcC0s9Br-tc0mfv2GKIkSWFg8H_DvAR4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURLFoody}}/api/Food/Delete/:foodid",
+					"host": [
+						"{{baseURLFoody}}"
+					],
+					"path": [
+						"api",
+						"Food",
+						"Delete",
+						":foodid"
+					],
+					"variable": [
+						{
+							"key": "foodid",
+							"value": "{{foodId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURLFoody",
+			"value": "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:86",
+			"type": "string"
+		},
+		{
+			"key": "accessToken",
+			"value": ""
+		},
+		{
+			"key": "randomFood",
+			"value": ""
+		},
+		{
+			"key": "foodId",
+			"value": ""
+		}
+	]
+}
